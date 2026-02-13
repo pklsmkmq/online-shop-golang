@@ -10,7 +10,7 @@ import (
 func SetupRoutes(r *gin.Engine) {
 	r.POST("/register", controllers.Register)
 	r.POST("/login", controllers.Login)
-	r.GET("/prdct", controllers.GetProducts)
+	r.GET("/products", controllers.GetProducts)
 
 	// Admin-only routes - hanya admin yang bisa create/update/delete
 	product := r.Group("/products")
