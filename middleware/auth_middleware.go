@@ -3,9 +3,10 @@ package middleware
 import (
 	"strings"
 
+	"go-supabase-api/config"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
-	"go-supabase-api/config"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
@@ -29,6 +30,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		claims := token.Claims.(jwt.MapClaims)
+		c.Set("user_id", claims["id"])
 		c.Set("role", claims["role"])
 		c.Next()
 	}

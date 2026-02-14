@@ -12,6 +12,9 @@ func SetupRoutes(r *gin.Engine) {
 	r.POST("/login", controllers.Login)
 	r.GET("/products", controllers.GetProducts)
 
+	// User routes
+	r.POST("/transactions", middleware.AuthMiddleware(), controllers.CreateTransaction)
+
 	// Admin-only routes - hanya admin yang bisa create/update/delete
 	product := r.Group("/products")
 	product.Use(middleware.AuthMiddleware(), middleware.AdminOnly())
