@@ -4,7 +4,7 @@ import "github.com/gin-gonic/gin"
 
 func AdminOnly() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		if c.GetString("role") != "admin" {
+		if c.GetString("role") != "" {
 			c.JSON(403, gin.H{"message": "Admin only"})
 			c.Abort()
 			return
